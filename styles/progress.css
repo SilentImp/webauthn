@@ -1,0 +1,32 @@
+#progress {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: var(--progress-height);
+  opacity: var(--progress-opacity);
+  background-color: var(--progress-background);
+  border: none;
+}
+
+#progress::-moz-progress-bar{
+  background-color: var(--progress-foreground);
+}
+
+#progress::-webkit-progress-bar {
+  background-color: var(--progress-background);
+}
+
+#progress::-webkit-progress-value {
+  background-color: var(--progress-foreground);
+}
+
+
+html.fullscreen #progress {
+  display: block;
+  z-index: 2;
+}

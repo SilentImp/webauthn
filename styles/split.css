@@ -1,0 +1,38 @@
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.split.maxvh {
+  padding: 0;
+}
+
+.split .vh {
+  height: 100%;
+}
+
+.split .half {
+  width: 50%;
+  max-width: 50%;
+  max-height: 100%;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+.split .third {
+  width: 33.333%;
+  max-width: 33.333%;
+  max-height: 100%;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+.split .quarter {
+  width: 50%;
+  height: 50%;
+  max-width: 50%;
+  max-height: 50%;
+  object-fit: contain;
+}

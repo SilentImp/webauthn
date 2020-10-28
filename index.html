@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+
+  <link rel="preload" href="fonts/FiraCode-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/Inter-VariableFont_slnt,wght.ttf" as="font" type="font/ttf" crossorigin>
+
+  <link rel="preload" as="style" href="styles/reset.css">
+  <link rel="preload" as="style" href="styles/fonts.css">
+  <link rel="preload" as="style" href="styles/SlideController.css">
+  <link rel="preload" as="style" href="styles/variables.css">
+  <link rel="preload" as="style" href="styles/slide.css">
+  <link rel="preload" as="style" href="styles/progress.css">
+  <link rel="modulepreload" href="javascript/SlideController.mjs">
+  <link rel="modulepreload" href="javascript/Keys.mjs">
+  <link rel="modulepreload" href="javascript/Selectors.mjs">
+  <link rel="stylesheet" href="styles/SlideController.css">
+</head>
+<body>
+  <main>
+    <ol class="slides">
+      <li class="slide intro">
+        <img class="face" src="images/face.jpg" alt="">
+        <span>Tech</span>
+        <img class="conference-logo" src="images/conference-logo.png" alt="UP2IT IT-CONFERENCE">
+        <h1>Как упростить аутентификацию для пользователя</h1>
+        <p>Антон Немцев</p>
+      </li>
+      <li class="slide centred sub-title sub-title-1">
+        <h2>Проблема</h2>
+      </li>
+      <!-- <li class="slide centred screenshot screenshot--funnel"></li> -->
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Почему нет?</h3>
+          <ul>
+            <li>Нет доверия</li>
+            <li>Недостаточно информации</li>
+            <li>Сложно</li>
+          </ul>
+        </div>
+      </li>
+      <li class="slide centred advice">  
+        <div>
+          <h3>Доверие</h3>
+          <p>Пользователь должен думать, что пользоваться вашим сервисом — безопасно</p>
+        </div>
+      </li>
+      <li class="slide centred screenshot screenshot--report split">
+        <div class="half"></div>
+        <div class="half">
+          <img src="images/lastpass.svg" alt="LastPass">
+        </div>
+      </li>
+      <li class="slide centred advice">  
+        <div>
+          <h3>Доверие</h3>
+          <p>Покажите рейтинги и ревью, убедитесь, что вы активны и доступны в используемых медиа-каналах, добавьте микроразметку</p>
+        </div>
+      </li>
+      <li class="slide centred screenshot screenshot--rating"></li>
+      <li class="slide centred advice">
+        <div>
+          <h3>Прозрачность</h3>
+          <p>Расскажите зачем вам нужна та или иная информация и как она будет использоваться. А также — как не будет.</p>
+        </div>
+      </li>
+      <li class="slide centred screenshot screenshot--transparency"></li>
+      <li class="slide centred advice">
+        <div>
+          <h3>Простота</h3>
+          <p>Не запрашивайте данные до момента, когда они понадобятся</p>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-2">
+        <div>
+          <h2>HTML</h2>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-3">
+        <div>
+          <h2>Формы</h2>
+        </div>
+      </li>
+
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Какие формы?</h3>
+          <ul>
+            <li>Регистрация</li>
+            <li>Логин</li>
+            <li>Восстановление пароля</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide illustration illustration--robot">
+        <h2 class="cloud"><b>Семантика! <br> БИП!</b></h2>
+      </li>
+
+      <li class="slide centred problems-list">
+        <pre><code data-code="37" class="html">&lt;form method=&quot;post&quot; action=&quot;&#x2F;sign-up&#x2F;&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Регистрация&lt;&#x2F;legend&gt;
+    &lt;!-- Поля ввода --&gt;
+  &lt;&#x2F;fieldset&gt;
+  &lt;button type=&quot;submit&quot;&gt;
+    Зарегистрироваться
+  &lt;&#x2F;button&gt;
+&lt;&#x2F;form&gt;</code></pre>
+      </li>
+
+      <li class="slide centred">
+<pre><code data-code="37" class="html">&lt;label&gt;
+    Email
+    &lt;small&gt;Мы не будем спамить&lt;&#x2F;small&gt;
+    &lt;input 
+      value=&quot;&quot;
+      name=&quot;email&quot;
+      type=&quot;email&quot; 
+      placeholder=&quot;email@gmail.com&quot;&gt;
+  &lt;&#x2F;label&gt;</code></pre>
+      </li>
+
+      <li class="slide centred sub-title sub-title-4">
+        <div>
+          <h2>Атрибуты</h2>
+        </div>
+      </li>
+
+      <li class="slide centred">
+<pre><code data-code="67" class="bash">autocorrect="off"
+spellcheck="false"
+autocapitalize="none"</code></pre>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Какие ещё атрибуты будут нам полезны?</h3>
+          <ul>
+            <li>inputmode</li>
+            <li>autocomplete</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide problems-list">
+        <h3>inputmode</h3>
+        <div class="split">
+          <ul class="half">
+            <li>none</li>
+            <li>text</li>
+            <li>tel</li>
+            <li>url</li>
+          </ul>
+          <ul class="half">
+            <li>email</li>
+            <li>numeric</li>
+            <li>decimal</li>
+            <li>search</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>autocomplete</h3>
+          <ul>
+            <li>email</li>
+            <li>tel</li>
+            <li>name</li>
+            <li>given-name</li>
+            <li>family-name</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>autocomplete</h3>
+          <ul>
+            <li>username</li>
+            <li>new-password</li>
+            <li>current-password</li>
+            <li>one-time-code</li>
+            <li>…</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide centred">
+<pre><code data-code="70" class="bash">inputmode=&quot;email&quot;
+autocomplete=&quot;email&quot;</code></pre>
+      </li>
+      <li class="slide split">
+        <div class="third vh screenshot screenshot--email"></div>
+        <div class="third vh screenshot screenshot--email-android"></div>
+        <div class="third vh screenshot screenshot--email-android-2"></div>
+      </li>
+      <li class="slide centred screenshot screenshot--email-desktop"></li>
+      <li class="slide centred">
+        <pre><code data-code="53" class="bash">autocomplete=&quot;new-password&quot;</code></pre>
+      </li>
+      <li class="slide split steps">
+        <div class="third screenshot screenshot--new-password-1"></div>
+        <div class="third screenshot screenshot--new-password-2"></div>
+        <div class="third screenshot screenshot--new-password-save"></div>
+      </li>
+      <li class="slide split steps">
+        <div class="third screenshot screenshot--new-password-android-1"></div>
+        <div class="third screenshot screenshot--new-password-android-2"></div>
+        <div class="third screenshot screenshot--new-password-android-save"></div>
+      </li>
+      <li class="slide centred screenshot screenshot--new-password-desktop"></li>
+      <li class="slide centred">
+        <pre><code data-code="46" class="bash">autocomplete=&quot;current-password&quot;</code></pre>
+      </li>
+      <li class="slide split">
+        <div class="screenshot screenshot--current-password third vh "></div>
+        <div class="screenshot screenshot--current-password-android-1 third vh "></div>
+        <div class="screenshot screenshot--current-password-android-2 third vh "></div>
+      </li>
+      <li class="slide centred screenshot screenshot--current-password-desktop"></li>
+      <li class="slide centred">
+<pre><code data-code="50" class="bash">inputmode=&quot;numeric&quot;
+autocomplete=&quot;one-time-code&quot;</code></pre>
+      </li>
+      <li class="slide centred">
+        <pre><code data-code="64" class="javascript">
+`${code} is your 
+ authentication code.
+ @${domain} #${code}`
+        </code></pre>
+      </li>
+      <li class="slide centred split">
+        <div class="quarter screenshot screenshot--sms-1"></div>
+        <div class="quarter screenshot screenshot--sms-2"></div>
+        <div class="quarter screenshot screenshot--sms-3"></div>
+        <div class="quarter screenshot screenshot--sms-4"></div>
+      </li>
+      <li class="slide centred screenshot screenshot--sms-input"></li>
+      <li class="slide split steps">
+        <div class="third screenshot screenshot--settings-1"></div>
+        <div class="third screenshot screenshot--settings-2"></div>
+        <div class="third screenshot screenshot--settings-3"></div>
+      </li>
+      <li class="slide centred screenshot screenshot--desktop-sms-input"></li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>iOS ищет слова в близости к цифрам</h3>
+          <ol>
+            <li>code</li>
+            <li>passcode</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Chrome на Android не поддерживает декларативный подход к автозаполнению OTP</h3>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="sms-title">Automatic Strong Passwords and Security Code AutoFill</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/wwdc2018.svg" alt="QR-Code со ссылкой на страницу с видео">
+          <a aria-label="Посмотреть презентацию Apple WWDC 2018, касающуюся новых возможностей iOS 12" target="_blank" data-click href="https://developer.apple.com/videos/play/wwdc2018/204/">Посмотреть презентацию Apple WWDC 2018, касающуюся новых возможностей iOS 12</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="sms-title">Origin-bound one-time codes delivered via SMS</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/sms.svg" alt="QR-Code со ссылкой на страницу спецификации Origin-bound one-time codes delivered via SMS">
+          <a aria-label="Прочесть про формат SMS, который нужно использовать, что бы сработало автозаполнение" target="_blank" data-click href="https://wicg.github.io/sms-one-time-codes/">Прочесть про формат SMS, нужный для автозаполнения</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2>HTML Living Standard</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/autofill.svg" alt="QR-Code со ссылкой на страницу, где можно купить книгу Form Design Patterns">
+          <a aria-label="Открыть раздел автозаполнения спецификации HTML" target="_blank" data-click href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill">Прочесть про автозаполнение</a>
+        </div>
+      </li>
+      <li class="slide centred contacts split book">
+        <img class="half book-illustration" src="images/book-design-patterns.png" alt="Книга Form Design Patterns">
+        <div class="half">
+          <img class="book-qrcode" src="images/book-design-patterns.svg" alt="QR-Code со ссылкой на страницу, где можно купить книгу Form Design Patterns">
+          <a aria-label="Купить книгу Form Design Patterns" target="_blank" data-click href="https://www.smashingmagazine.com/printed-books/form-design-patterns/">Купить книгу</a>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-5">
+        <div>
+          <h2>Источник данных</h2>
+        </div>
+      </li>
+
+      <li class="slide illustration illustration--robot-2">
+        <h2 class="cloud"><b>Твои пароли<br> зохвачены! БИП!</b></h2>
+      </li>
+
+      <li class="slide centred screenshot screenshot--save-password"></li>
+
+      <li class="slide illustration illustration--scream">
+        <h2 class="cloud"><b>Зада-а-a-a-ай na-a-a-a-ame!</b><span></span></h2>
+      </li>
+      <li class="slide centred">
+        <pre><code data-code="52" class="react">&lt;StyledInput
+  ref={emailInputRef}
+  type=&quot;email&quot;
+  onChange={setEmail}
+  value={email}
+  autoComplete=&quot;email&quot;
+  &#x2F;&gt;</code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--nonames"></li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Chrome и Firefox</h3>
+          <ol>
+            <li>username</li>
+            <li>поле перед паролем</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Safari</h3>
+          <ol>
+            <li>username</li>
+            <li>email</li>
+            <li>поле перед паролем</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="49" class="bash">autocomplete=&quot;username email&quot;</code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--autofill"></li>
+
+      <li class="slide centred screenshot screenshot--add-list"></li>
+
+      <li class="slide centred screenshot screenshot--add"></li>
+
+      <li class="slide split steps">
+        <div class="third screenshot screenshot--password-1"></div>
+        <div class="third screenshot screenshot--password-2"></div>
+        <div class="third screenshot screenshot--password-3"></div>
+      </li>
+
+      <li class="slide centred screenshot screenshot--can-change-password"></li>
+
+      <li class="slide centred sub-title sub-title-6">
+        <div>
+          <h2>Восстановление пароля</h2>
+        </div>
+      </li>
+      <li class="slide centred">
+        <pre><code data-code="40" class="javascript">server.use(
+  "/.well-known/change-password", 
+  (req, res) => {
+    res.redirect("/reset-password");
+});</code></pre>
+      </li>
+      <li class="slide centred">
+        <pre><code data-code="40" class="nginx">
+server {
+  rewrite 
+    ^/.well-known/change-password$ 
+    http://domain.com/reset-password
+    redirect;
+}
+</code></pre>
+      </li>
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Ожидаемые ответы</h3>
+          <ul>
+            <li>302 Found</li>
+            <li>303 See Other</li>
+            <li>307 Temporary Redirect</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide centred screenshot screenshot--restore"></li>
+      
+      <li class="slide centred">
+        <pre><code data-code="45" class="javascript">server.use(
+  "/.well-known/resource-that-
+  should-not-exist-whose-status-
+  code-should-not-be-200",
+  (req, res) => {
+    res.status(404).end();
+  });</code></pre>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Ожидаемый ответ</h3>
+          <ul>
+            <li>404 Not Found</li>
+          </ul>
+        </div>
+      </li>
+      
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">A Well-Known URL for Changing Passwords</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/change-password.svg" alt="QR-Code со ссылкой на спецификацию A Well-Known URL for Changing Passwords">
+          <a aria-label="Открыть спецификацию смены паролей с помощью браузера" target="_blank" data-click href="https://w3c.github.io/webappsec-change-password-url/">Прочесть про URL для смены паролей с помощью браузера</a>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-7">
+        <div>
+          <h2>JavaScript</h2>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-1">
+        <div>
+          <h2>Credential Management</h2>
+        </div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="64" class="react">
+navigator.credentials
+        </code></pre>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="42" class="react">
+.create(CredentialCreationOptions)
+.store(Credential)
+.get(CredentialRequestOptions)
+.preventSilentAccess()
+        </code></pre>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Типы Credential: </h3>
+          <ol>
+            <li>PasswordCredential</li>
+            <li>FederatedCredential</li>
+            <li>OTPCredential&nbsp;(WebOTP)</li>
+            <li>PublicKeyCredential&nbsp;(WebAuthn)</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred advice problems-list">
+        <div>
+          <h3>PasswordCredential</h3>
+          <p>Регистрация с помощью логина и пароля.</p>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>CredentialData: </h3>
+          <ol>
+            <li>id</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>PasswordCredential: </h3>
+          <ol>
+            <li>name</li>
+            <li>iconURL</li>
+            <li>password</li>
+            <li>type: "password"</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred screenshot screenshot--registration-1"></li>
+
+      <li class="slide centred">
+        <pre><code data-code="32">const signUpHandler = async (event) => { 
+  // Регистрация
+  const form = event.currentTarget;
+  if (window?.PasswordCredential) {
+    const credential = await navigator.
+      credentials.create({
+        password: form
+      });
+    navigator.credentials.store(credential);
+  }
+}</code></pre>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="31">const signUpHandler = (event) => { 
+  // Регистрация
+  const form = event.currentTarget;
+  if (window?.PasswordCredential) {
+    const credential = 
+      new PasswordCredential(form);
+    navigator.credentials.store(credential);
+  }
+}</code></pre>
+      </li>
+      <li class="slide centred screenshot screenshot--registration-2"></li>
+      <li class="slide centred screenshot screenshot--registration-3"></li>
+
+      <li class="slide centred">
+        <pre><code data-code="36">function signUpHandler (event) { 
+  // Регистрация
+  const form = event.currentTarget;
+  const data = new FormData(form);
+
+  if (window?.PasswordCredential) {
+    // …
+  }
+}</code></pre>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="36">
+const credential = 
+  new PasswordCredential({
+    id: data.get('email'),
+    name: data.get('firstName'),
+    password: data.get('password'),
+    iconURL: data.get('avatar'),
+  });
+navigator.credentials.store(credential);
+        </code></pre>
+      </li>
+
+      <li class="slide centred split">
+        <div class="vh half screenshot screenshot--registration-4"></div>
+        <div class="vh half screenshot screenshot--registration-5"></div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="53">navigator.credentials.get()</code></pre>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>CredentialRequestOptions: </h3>
+          <ol>
+            <li>mediation 
+              <ul>
+                <li>silent</li>
+                <li>optional</li>
+                <li>required</li>
+              </ul>
+            </li>
+            <li>signal</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>PasswordCredential: </h3>
+          <ol>
+            <li>password: true  </li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="34">(async () => {
+  if (window?.PasswordCredential) {
+    const credential = 
+      await navigator.credentials.get({
+        password: true,
+        mediation: 'silent',
+      });
+    if (credential === null) return;
+    // Авторизация
+    // Обработка ошибок
+}})();</code></pre>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>PasswordCredentialData: </h3>
+          <ol>
+            <li>id</li>
+            <li>name</li>
+            <li>iconURL</li>
+            <li>password</li>
+            <li>type: "password"</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred screenshot screenshot--signedin"></li>
+
+      <li class="slide centred">
+        <pre><code data-code="34">if (window?.PasswordCredential) {
+  const credential = 
+    await navigator.credentials.get({
+      password: true,
+      mediation: 'optional',
+    });
+  if (credential === null) return;
+  // Авторизация
+  // Обработка ошибок
+}</code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--signedin-selector-1"></li>
+      <li class="slide centred screenshot screenshot--signedin-selector-2"></li>
+
+      <li class="slide centred">
+        <pre><code data-code="45">
+if (navigator?.credentials
+      ?.preventSilentAccess) {
+  await navigator?.credentials
+      ?.preventSilentAccess(id);
+}
+        </code></pre>
+      </li>
+
+      <li class="slide split steps">
+        <div class="half vh screenshot screenshot--signedin-selector-2"></div>
+        <div class="half vh screenshot screenshot--signedin-cross"></div>
+      </li>
+
+      <li class="slide problems-list">
+        <h3>FederatedCredentialData:</h3>
+        <div class="split">
+          <ul class="half">
+            <li>id</li>
+            <li>name</li>
+            <li>iconURL</li>
+          </ul>
+          <ul class="half">
+            <li>provider</li>
+            <li>protocol</li>
+            <li>type: "federated"</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="slide centred screenshot screenshot--credentials-support-1"></li>
+      <li class="slide centred screenshot screenshot--credentials-support-2"></li>
+
+      <li class="slide centred screenshot screenshot--no"></li>
+
+      <li class="slide centred screenshot screenshot--no-rus"></li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">The Credential Management API (Web Fundamentals)</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/web-fun-credential.svg" alt="QR-Code со ссылкой на статью Web Fundamentals о использовании Credential Management API">
+          <a aria-label="Открыть спецификацию по управлению учетными записями" target="_blank" data-click href="https://developers.google.com/web/fundamentals/security/credential-management">Прочесть про то, как применять Credential Management на практике</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Credential Management</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/credentials.svg" alt="QR-Code со ссылкой на спецификацию Credential Management">
+          <a aria-label="Открыть спецификацию по управлению учетными записями" target="_blank" data-click href="https://w3c.github.io/webappsec-credential-management/">Прочесть спецификацию про управление учетными записями</a>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-2">
+        <div>
+          <h2>Web&nbsp;OTP&nbsp;API</h2>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>OTPCredential</h3>
+        </div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="41">if ('OTPCredential' in window) {
+  const { code, type } = await 
+    navigator.credentials.get({
+      otp: { transport:['sms'] }
+    });
+
+  if (!code) return;
+  // Авторизация
+}</code></pre>
+      </li>
+
+      <li class="slide split">
+        <div class="half vh screenshot screenshot--emulator-send"></div>
+        <div class="half vh screenshot screenshot--emulator-recieve"></div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Требования к SMS в Chrome под Android: </h3>
+          <ol>
+            <li>Сообщение должно содержать 4-10 число-буквенных символов, минимум 1 из которых число</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Требования к SMS в Chrome под Android: </h3>
+          <ol start="2">
+            <li>Сообщение должно быть отправлено с номера, который не принадлежит к контактам пользователя</li>
+          </ol>
+        </div>
+      </li>
+      
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Verify phone numbers on the web with the Web OTP API (Web Fundamentals)</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/webotp.svg" alt="QR-Code со ссылкой на статью Web Fundamentals об автоподстановке одноразовых кодов из SMS в Chrome под Android с помощью Web OTP API">
+          <a aria-label="Прочесть про автоподстановку одноразовых кодов из SMS в Chrome под Android" target="_blank" data-click href="https://web.dev/web-otp/">Прочесть про автоподстановку одноразовых кодов из SMS в Chrome под Android</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="sms-title">Origin-bound one-time codes delivered via SMS</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/sms.svg" alt="QR-Code со ссылкой на страницу спецификации Origin-bound one-time codes delivered via SMS">
+          <a aria-label="Прочесть про формат SMS, который нужно использовать, что бы сработало автозаполнение" target="_blank" data-click href="https://wicg.github.io/sms-one-time-codes/">Прочесть про формат SMS, нужный для автозаполнения</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2>Web OTP API</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/otp-api.svg" alt="QR-Code со ссылкой на страницу спецификации Web OTP API">
+          <a aria-label="Прочесть про Web OTP API, который нужно использовать для получения кода SMS из скрипта" target="_blank" data-click href="https://wicg.github.io/web-otp/">Прочесть как получить SMS из скрипта</a>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-7">
+        <div>
+          <h2>isLoggedIn Web API</h2>
+        </div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="64">
+navigator.setLoggedIn
+navigator.setLoggedOut
+navigator.isLoggedIn
+        </code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--stub"></li>
+
+      <li class="slide centred screenshot screenshot--stub-ru"></li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">isLoggedIn<br>Web API</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/isloggedin.svg" alt="QR-Code со ссылкой на спецификацию isLoggedIn Web API">
+          <a aria-label="Открыть спецификацию isLoggedIn Web API" target="_blank" data-click href="https://github.com/privacycg/is-logged-in">Прочесть о том, как сообщить браузеру о том, что пользователь аутентифицирован</a>
+        </div>
+      </li>
+
+      <li class="slide centred sub-title sub-title-0">
+        <div>
+          <h2>WebAuthn</h2>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>PublicKeyCredential</h3>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Кросс-платформенные</h3>
+        </div>
+      </li>
+
+      <li class="slide centred illustration illustration--key"></li>
+      <li class="slide centred illustration illustration--phones"></li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Платформенные</h3>
+        </div>
+      </li>
+
+      <li class="slide centred illustration illustration--plaform"></li>
+      <li class="slide centred illustration illustration--macbook-touch-id"></li>
+      <li class="slide centred illustration illustration--plaform-android"></li>
+      <li class="slide centred illustration illustration--plaform-windows"></li>
+
+      <li class="slide centred problems-list problems-list--small">
+        <div>
+          <h3>Платформенный ключ: </h3>
+          <ol>
+            <li>Пользователь регистрируется</li>
+            <li>Мы спрашиваем разрешения для использования платформенного ключа</li>
+            <li>Если пользователь соглашается регистрируем ключ и храним id в браузере</li>
+            <li>При попытке аутентификации — используем </li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list problems-list--small">
+        <div>
+          <h3>Кросс-платформенный ключ: </h3>
+          <ol>
+            <li>Пользователь регистрируется</li>
+            <li>Даем ему возможность по его инициативе добавить ключи в профиле и храним их id на сервере</li>
+            <li>При попытке аутентификации пользователь вводит логин и сервер присылает связанный список ключей</li>
+            <li>Если ключи есть вместо или после ввода пароля авторизируется ключем с пином.</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Регистрация ключа: </h3>
+          <ol>
+            <li>Запрашиваем у сервера вызов (challenge), данные о платформе и пользователе</li>
+            <li>Передаем их ключу и получаем PublicKeyCredential</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list">
+        <div>
+          <h3>Регистрация ключа: </h3>
+          <ol>
+            <li>Отправляем PublicKeyCredential серверу для валидации и сохранения</li>
+            <li>Получаем Сredential Id который следует хранить на клиенте</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="38">
+if ('PublicKeyCredential' in window) {
+  /* … */ 
+}
+        </code></pre>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="28">const hasPlatformAuthenticator 
+  = await PublicKeyCredential
+  ?.isUserVerifyingPlatformAuthenticatorAvailable();</code></pre>
+      </li>
+
+<!-- Лучше чем владыка утренней звезды Тлауицкальпантекутли -->
+      <li class="slide centred">
+        <pre><code data-code="51">PublicKeyCredential
+  .is
+   User
+   Verifying
+   Platform
+   Authenticator
+   Available();</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="28">const data = new FormData(form);
+const response = await fetch(
+  '/challenge/register', 
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      name: data.get('name'),
+      email: data.get('email'),
+      'new-password': data.get('new-password'),
+    }),
+  });
+
+const options = await response.json();</code></pre>
+      </li>
+
+      <li class="slide centred">
+        <pre><code data-code="64">npm i -S fido2-library</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="36">const { Fido2Lib } 
+  = require("fido2-library");
+
+const f2l = new Fido2Lib({
+  rpId: HOST,
+  attestation: "none",
+  authenticatorAttachment: "platform",
+  authenticatorUserVerification: 
+    "discouraged",
+});</code></pre>
+      </li>
+
+<li class="slide centred server">
+  <pre><code data-code="32">const f2l = new Fido2Lib({
+  rpId: HOST,
+  attestation: "none",
+  authenticatorAttachment: "cross-platform",
+  authenticatorUserVerification: "required",
+});</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="38">fastify.post('/challenge/register/',
+  async (request, reply) => {
+    const { 
+      email, 
+      name 
+    } = JSON.parse(request.body);
+    // Регистрация пользователя
+    // …
+});</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="41">const options 
+  = await f2l.attestationOptions();</code></pre>
+      </li>
+
+      <li class="slide split maxvh">
+        <pre class="half vh"><code data-code="23">{
+  🔴 rp: {
+    🔴 name 
+    🟢 id // origin
+    🟢 icon
+  },
+  🔴 user: {
+    🔴 id,❗️
+    🔴 displayName,
+    🔴 name,
+    🟢 icon,
+  },
+  🔴 challenge,❗
+  🔴 pubKeyCredParams,
+</code></pre><pre class="half vh"><code data-code="23">
+  🟢 timeout,
+  🟢 excludeCredentials,
+  🟢 authenticatorSelection: {
+    authenticatorAttachment: [
+      "platform",
+      "cross-platform"
+    ],
+    requireResidentKey,
+    userVerification: [
+      "required",
+      "preferred",
+      "discouraged"
+    ]
+  },
+  🟢 attestation,
+  🟢 extensions,
+}</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="22">{
+  rp: { 
+    name: 'Anonymous Service', 
+    id: 'nice-cheetah-30.loca.lt' },
+  user: {
+    id: [ArrayBuffer],
+    name: 'thesilentimp@gmail.com',
+    displayName: 'Антон Немцев' },
+  challenge: [ArrayBuffer],
+  pubKeyCredParams: [
+    { type: 'public-key', alg: -7 },
+    { type: 'public-key', alg: -257 }
+  ],
+  timeout: 60000,
+  attestation: 'none',
+  authenticatorSelection: { 
+    userVerification: 'discouraged' }}</code></pre>
+    </li>
+
+    <li class="slide centred">
+      <pre><code data-code="41">const toBuffer = (base64) => {
+  const ASCIIString = atob(base64);
+        
+  return Uint8Array.from(
+    ASCIIString, 
+    c => c.charCodeAt(0)
+  ).buffer;
+}</code></pre>
+    </li>
+    
+
+    <li class="slide centred">
+      <pre><code data-code="41">const toBase64 = (buffer) => {
+  const binaryString = 
+    String.fromCharCode.apply(
+      null, 
+      new Uint8Array(buffer));
+
+  return btoa(binaryString);
+}</code></pre>
+    </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="48">const challengeString = 
+  toBuffer(options.challenge);
+
+request.session.set(
+  'challenge', 
+  challengeString);</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="42" class="js">options.challenge = 
+  challengeString;
+
+options.user = {
+  id: nanoid(), // Хэш id из базы
+  name: email,
+  displayName: name,
+};</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="52" class="js">
+reply
+  .type('application/json')
+  .code(200)
+  .send(options);
+        </code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="36" class="js">options.user.id = 
+  toBuffer(options.user.id);
+
+options.challenge = 
+  toBuffer(options.challenge);
+
+const credential = 
+  await navigator.credentials.create({
+    publicKey: options
+  });</code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--ff-key"></li>
+
+      <li class="slide centred screenshot screenshot--chrome-key"></li>
+
+      <li class="slide centred screenshot screenshot--chrome-key-list-1"></li>
+
+      <li class="slide centred screenshot screenshot--chrome-key-flag"></li>
+
+      <li class="slide centred screenshot screenshot--chrome-key-list-2"></li>
+
+      <li class="slide centred screenshot screenshot--chrome-key-list-3"></li>
+
+      <li class="slide centred screenshot screenshot--cable"></li>
+
+      <li class="slide split">
+        <div class="half vh screenshot screenshot--safari-face-id-1"></div>
+        <div class="half vh screenshot screenshot--safari-face-id-2"></div>
+      </li>
+
+      <li class="slide split">
+        <div class="third vh screenshot screenshot--safari-key-1"></div>
+        <div class="third vh screenshot screenshot--safari-key-2"></div>
+        <div class="third vh screenshot screenshot--safari-key-3"></div>
+      </li>
+
+      <li class="slide split">
+        <div class="third vh screenshot screenshot--android-key-1"></div>
+        <div class="third vh screenshot screenshot--android-key-2"></div>
+        <div class="third vh screenshot screenshot--android-key-3"></div>
+      </li>
+
+
+      <li class="slide centred">
+        <pre><code data-code="38">{
+  id: "nZOlyXf57erlQbudIIuOrQEdRUs",
+  rawId: [ArrayBuffer],
+  response: {
+    attestationObject: [ArrayBuffer],
+    clientDataJSON: [ArrayBuffer],
+  },
+  type: "public-key",
+}</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="35">const {
+  id,
+  type,
+  response: {
+    clientDataJSON: clientDataBuffer,
+    attestationObject: attestationBuffer,
+}} = credential;
+</code></pre>
+</li>
+
+<li class="slide centred client">
+  <pre><code data-code="48">const clientDataJSON = 
+  toBase64(clientDataBuffer);
+
+const attestationObject = 
+  toBase64(attestationBuffer);</code></pre>
+</li>
+
+<li class="slide centred client">
+  <pre><code data-code="45">const attestation = {
+  id,
+  type,
+  response: {
+    clientDataJSON,
+    attestationObject,
+  },
+};</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="48">const body = 
+  JSON.stringify(attestation);
+
+const response = 
+  await fetch(`/register`, {
+    method: "POST",
+    body });</code></pre>
+</li>
+
+<li class="slide centred client">
+  <pre><code data-code="48">const { credentialId } = 
+  await response.json();
+
+localStorage
+  .setItem(
+    'credentialId', 
+    credentialId);</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="45">fastify.post('register/',
+  async (request, reply) => {
+    const { session } = request;
+    const challenge = 
+      session.get('challenge');
+
+    // …
+});</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="46">const assertionExpectations = {
+  challenge,
+  origin: `https://${HOST}`,
+  factor: "either"
+};</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="35">
+const clientAttestationResponse = 
+  JSON.parse(request.body);
+
+clientAttestationResponse.rawId = 
+  toBuffer(clientAttestationResponse.Id);
+        </code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="45">
+const result = 
+  await f2l.attestationResult(
+    clientAttestationResponse, 
+    assertionExpectations);
+
+const { authnrData } = result;
+        </code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="32">const counter = 
+  authnrData.get('counter');
+const credentialId = 
+  authnrData.get('credId');
+const publicKey = 
+  authnrData.get('credentialPublicKeyPem');
+
+const { session } = request;
+session.set('counter', counter);
+session.set('credentialId', credentialId);
+session.set('publicKey', publicKey);</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="36">const credentialIdBuffer 
+  = authnrData.get('credId')
+const credentialId 
+  = toBase64(credentialIdBuffer);
+
+reply
+  .type('application/json')
+  .code(200)
+  .send({credentialId});</code></pre>
+      </li>
+
+      <li class="slide centred problems-list problems-list--small">
+        <div>
+          <h3>Логин с помощью ключа: </h3>
+          <ol>
+            <li>Проверяем есть ли у нас Сredential Id</li>
+            <li>Запрашиваем у сервера вызов (challenge) и данные о платформе</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred problems-list problems-list--small">
+        <div>
+          <h3>Логин с помощью ключа: </h3>
+          <ol>
+            <li>Передаем их ключу и получаем PublicKeyCredential</li>
+            <li>Отправляем PublicKeyCredential серверу для валидации</li>
+          </ol>
+        </div>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="36">
+const credentialId = 
+  localStorage.getItem('credentialId');
+
+if (credentialId === null) return;
+        </code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="36">const response = await fetch(
+  '/challenge/login', 
+  { method: 'POST' });
+
+const options = await response.json();</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="48">fastify.post(
+  '/challenge/login',
+  async (request, reply) => {
+    
+  // …
+});</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="46">const options = 
+  await f2l.assertionOptions();</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="44">{
+  challenge: [ArrayBuffer],
+  timeout: 60000,
+  rpId: HOST,
+  userVerification: 'discouraged'
+}</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="36">const { session } = request;
+const challenge = 
+  toBuffer(option.challenge);
+session.set('challenge', challenge);
+option.challenge = challenge;
+reply
+  .type('application/json')
+  .code(200)
+  .send(option);</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="36">const { challenge } = options;
+options.challenge = toBuffer(challenge);
+const credentialId = 
+  localStorage.getItem('credentialId');
+options.allowCredentials = [{ 
+  type: "public-key", 
+  id: toBuffer(credentialId),
+}];</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="41">
+const credential = 
+  await navigator.credentials.get({
+    publicKey: options
+  });
+        </code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--login"></li>
+
+      <li class="slide centred">
+        <pre><code data-code="34">{
+  id: "FtjWT4fIT9…zs2LRxuG5fBRj9bA",
+  rawId: [ArrayBuffer],
+  response: {
+    authenticatorData: [ArrayBuffer],
+    clientDataJSON: [ArrayBuffer],
+    signature: [ArrayBuffer],
+    userHandle: null,
+  },
+  type: "public-key",
+}</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="31">const {
+  id,
+  type,
+  response: {
+    authenticatorData: authenticatorDataBuffer,
+    clientDataJSON: clientDataJSONBuffer,
+    signature: signatureBuffer,
+    userHandle,
+  }
+} = credential;</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="40">
+const authenticatorData = 
+  toBase64(authenticatorDataBuffer);
+const clientDataJSON = 
+  toBase64(clientDataJSONBuffer);
+const signature = 
+  toBase64(signatureBuffer);
+      </code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="36">const authenticator = {
+  id,
+  type,
+  response: {
+    authenticatorData,
+    clientDataJSON,
+    signature,
+    userHandle,
+  },
+};</code></pre>
+      </li>
+
+      <li class="slide centred client">
+        <pre><code data-code="44">const body = 
+  JSON.stringify(authenticator);
+await fetch('/login', { 
+    method: "POST",
+    body 
+  });</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="48">const { session } = request;
+const challenge = 
+  session.get('challenge');
+const publicKey =
+  session.get('publicKey');
+const prevCounter = 
+  session.get('counter');</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="40">const assertionExpectations = {
+  challenge,
+  origin: `https://${HOST}`,
+  factor: "either",
+  publicKey,
+  prevCounter,
+  userHandle,
+};</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="36">const clientAssertionResponse = 
+  JSON.parse(request.body);
+clientAssertionResponse.rawId = 
+  toBuffer(clientAssertionResponse.id);
+
+await f2l.assertionResult(
+  clientAssertionResponse, 
+  assertionExpectations
+);</code></pre>
+      </li>
+
+      <li class="slide centred server">
+        <pre><code data-code="64">
+reply.code(204);
+        </code></pre>
+      </li>
+
+      <li class="slide centred screenshot screenshot--caniuse-webauth"></li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Приложение, с помощью которого я показал работу WebAuthn</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/webauthn-server.svg" alt="QR-Code со ссылкой на репозиторий приложения">
+          <a aria-label="Открыть репозиторий приложения" target="_blank" data-click href="https://github.com/SilentImp/webauthn-server">Открыть репозиторий приложения</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">A curated list of awesome WebAuthn/FIDO2 resources</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/links.svg" alt="QR-Code со ссылкой на коллекцию ссылок на WebAuthn ресурсы">
+          <a aria-label="Открыть коллекцию ссылок на WebAuthn ресурсы" target="_blank" data-click href="https://github.com/herrjemand/awesome-webauthn">Открыть коллекцию ссылок на WebAuthn ресурсы</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2>WebAuthn guide</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/guide.svg" alt="QR-Code со ссылкой на сайт с руководством и демо WebAuthn">
+          <a aria-label="Открыть сайт с руководством и демо WebAuthn" target="_blank" data-click href="https://webauthn.guide/">Открыть сайт с руководством и демо WebAuthn</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Introduction to WebAuthn API (Yuriy Ackermann)</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/intro.svg" alt="QR-Code со ссылкой на серию статей, содержащих введение в WebAuthn API Юрия Аккермана">
+          <a aria-label="Читать серию статей, содержащих введение в WebAuthn API Юрия Аккермана" target="_blank" data-click href="https://medium.com/@herrjemand/introduction-to-webauthn-api-5fd1fb46c285">Читать серию статей, содержащих введение в WebAuthn API Юрия Аккермана</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Meet Face ID and Touch ID for the web (WWDC 2020 video)</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/apple-webauthn.svg" alt="QR-Code со ссылкой на презентацию Face ID и Touch ID для web в Safari 14 во время WWDC 2020 года">
+          <a aria-label="Смотреть презентацию Face ID и Touch ID для web в Safari 14 на WWDC 2020 года." target="_blank" data-click href="https://developer.apple.com/videos/play/wwdc2020/10670/">Смотреть презентацию Face ID для web в Safari 14 на WWDC 2020 года.</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Meet Face ID and Touch ID for the web (Webkit blog post)</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/apple-webauthn-2.svg" alt="QR-Code со ссылкой на пост о внедрении Face ID в блоге Webkit">
+          <a aria-label="Читать пост о внедрении Face ID в блоге Webkit" target="_blank" data-click href="https://webkit.org/blog/11312/meet-face-id-and-touch-id-for-the-web/">Читать пост о внедрении Face ID в блоге Webkit</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Web Authentication and Windows Hello</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/ms-webauthn.svg" alt="QR-Code со ссылкой на статью Microsoft об внедрении WebAuthn">
+          <a aria-label="Читать статью Microsoft об внедрении WebAuthn" target="_blank" data-click href="https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication">Читать статью Microsoft об внедрении WebAuthn</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Enabling Strong Authentication with WebAuthn</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/google-webauthn.svg" alt="QR-Code со ссылкой на статью Google об внедрении WebAuthn">
+          <a aria-label="Читать статью Google об внедрении WebAuthn" target="_blank" data-click href="https://developers.google.com/web/updates/2018/05/webauthn">Читать статью Google об внедрении WebAuthn</a>
+        </div>  
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Emulate Authenticators and Debug WebAuthn in Chrome DevTools</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/debug.svg" alt="QR-Code со ссылкой на статью об отладке WebAuthn в Chrome">
+          <a aria-label="Читать статью об отладке WebAuthn в Chrome" target="_blank" data-click href="https://developers.google.com/web/tools/chrome-devtools/webauthn">Читать статью об отладке WebAuthn в Chrome</a>
+        </div>  
+      </li>
+      
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2>Fido Alliance</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/fido.svg" alt="QR-Code со ссылкой на сайт Fido Alliance">
+          <a aria-label="Перейти на сайт Fido Alliance" target="_blank" data-click href="https://fidoalliance.org/">Перейти на сайт Fido Alliance</a>
+        </div>
+      </li>
+
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2>Yubico (YubiKey)</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/yubico.svg" alt="QR-Code со ссылкой на сайт Fido Alliance">
+          <a aria-label="Перейти на сайт Yubico" target="_blank" data-click href="https://www.yubico.com/">Перейти на сайт Yubico</a>
+        </div>
+      </li>
+      
+      <li class="slide centred spec split">
+        <div class="half">
+          <h2 class="password-title">Web Authentication: An API for accessing Public Key Credentials</h2>
+        </div>
+        <div class="half">
+          <img class="book-qrcode" src="images/webauthn.svg" alt="QR-Code со ссылкой на cпецификацию WebAuthn">
+          <a aria-label="Читать спецификацию WebAuthn" target="_blank" data-click href="https://w3c.github.io/webauthn/">Читать спецификацию WebAuthn</a>
+        </div>
+      </li>
+
+      <li class="slide centred outro">
+        <div>
+          <img src="images/conference-logo.png" alt="UP2IT IT-CONFERENCE">
+          <p>Спасибо за<br>понимание</p>
+        </div>
+      </li>
+      <li class="slide centred contacts split">
+        <div class="half">
+          <h2>Контакты</h2>
+          <h3>Anton Nemtsev</h3>
+          <img class="company" src="images/werkspot.svg" alt="Werkspot" />
+          <ul>
+            <li><a 
+              class="link"
+              target="_blank"
+              aria-label="Portfolio: silentimp.info" 
+              href="https://silentimp.info/" 
+              data-click
+            >https://silentimp.info/</a></li>
+            <li><a 
+              class="link"
+              target="_blank"
+              aria-label="Twitter: @silentimp" 
+              href="https://twitter.com/@silentimp" 
+              data-click
+            >@silentimp</a></li>
+            <li><a 
+              class="link"
+              target="_blank"
+              aria-label="Email: thesilentimp@gmail.com" 
+              href="mailto:thesilentimp@gmail.com" 
+              data-click
+            >thesilentimp@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="half">
+          <img class="qrcode" src="images/git.svg" alt="QRCODE cо ссылкой на доклад">
+        </div>
+        <footer>
+          <a
+            aria-label="Slides" 
+            target="_blank"
+            class="link" 
+            href="https://github.com/SilentImp/WebAuthn" 
+            data-click
+          >https://github.com/SilentImp/WebAuthn</a>
+        </footer>
+      </li>
+    </ol>
+  </main>
+  <progress id="progress"></progress>
+  <form class="slide-selector">
+    <input aria-label="Page number" autocomplete="off" maxlength="3" size="3" pattern="[0-9]{1,3}" placeholder="1" type="text" inputmode="numeric" name="page">
+  </form>
+  <script src="javascript/highlight.pack.js"></script>
+  <script type="module" src="javascript/SlideController.mjs"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

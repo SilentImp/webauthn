@@ -1,0 +1,26 @@
+:root {
+  --slide-width: 960px;
+  --slide-ratio-9-16: calc(16 / 9);
+  --slide-ratio-10-16: calc(16 / 10);
+  --slide-ratio: var(--slide-ratio-10-16);
+  --slide-height: calc(var(--slide-width) / var(--slide-ratio));
+
+  --slide-gap: 40px;
+  --slide-outline-width: 5px;
+  --slide-outline-color-current: #d00;
+  --slide-outline-color-fucus: #fff8; 
+
+  --add-bgc: #282828;
+  --common-bgc: #222;
+  --slide-bgc: #fff;
+  --dark-color: #fff;
+  --light-color: #000;
+
+  --progress-height: 5px;
+  --progress-foreground: #d00;
+  --progress-background: transparent;
+  --progress-opacity: .75;
+
+  --animation-time: .3s;
+  --animation-easing: linear;
+}

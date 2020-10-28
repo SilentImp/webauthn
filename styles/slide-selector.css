@@ -1,0 +1,33 @@
+.slide-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0008; 
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.slide-selector.visible {
+  display: flex;
+}
+
+.slide-selector input {
+  appearance: none;
+  border: none;
+  width: 140px;
+  height: 140px;
+  line-height: 140px;
+  text-align: center;
+  border-radius: 100%;
+  font-size: 56px;
+  font-family: "Inter";
+  outline: none;
+}
+
+.slide-selector input:focus {
+  box-shadow: 0 0 0 var(--slide-outline-width) var(--slide-outline-color-fucus);
+}

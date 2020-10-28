@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>isLoggedIn</title>
+</head>
+<body>
+  <header>
+    <button id="signin" type="button">Sign-in</button>
+    <button id="signout" type="button">Sign-out</button>
+  </header>
+
+  <main>
+    Пользователь <output id="output"></output>
+  </main>
+
+  <script>
+    (async()=>{
+      const signIn = document.getElementById('signin');
+      const signOut = document.getElementById('signout');
+      const output = document.getElementById('output');
+
+      const checkIsLoggedIn = async () => {
+        const isLoggedIn = await navigator.isLoggedIn();
+        console.log('isLoggedIn: ', isLoggedIn);
+        output.innerText = isLoggedIn ? 'аутентифицирован' : 'анонимен';
+      }
+
+      signIn.addEventListener('click', async (event) => {
+        try {
+          console.log(navigator.setLoggedIn);
+          const response1 = await navigator.setLoggedIn({
+            username: "silentimp",
+            credentialTokenType: "legacyAuthCookie"
+          });
+          console.log(response1);
+          const response2 = await navigator.setLoggedIn("silentimp", "legacyAuthCookie");
+          console.log(response2);
+          checkIsLoggedIn();
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+      signOut.addEventListener('click', async (event) => {
+        const response = await navigator.setLoggedOut("silentimp");
+        console.log(response);
+        checkIsLoggedIn();
+      });
+
+      checkIsLoggedIn();
+
+    })();
+  </script>
+</body>
+</html>

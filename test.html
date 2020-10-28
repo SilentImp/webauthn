@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    <style>
+      label, input {display: block;}
+    </style>
+    <form method="GET" action="/test.html">
+      <fieldset>
+        <legend>Registration form</legend>
+        <label>
+          Username:
+          <input name="username" type="text" autocomplete="username" value="">
+        </label>
+        <label>
+          Email (username):
+          <input name="email" type="email" autocomplete="email" required inputmode="email" value="">
+        </label>
+        <label>
+          Password:
+          <input name="password" type="password" autocomplete="password" required value="">
+        </label>
+      </fieldset>
+      <button type="submit">Register</button>
+    </form>
+  </main>
+</body>
+</html>

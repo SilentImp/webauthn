@@ -1,0 +1,62 @@
+html {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.slide code {
+  font-family: 'Fira Code', sans-serif;
+  font-weight: 400;
+  font-size: var(--code, 16px);
+  line-height: 1.4;
+}
+
+.slide h1 {
+  font-size: 64px;
+  line-height: 72px;
+}
+
+.slide h2 {
+  display: inline;
+  background-color: #ff0;
+  font-size: 100px;
+  font-weight: 200;
+  line-height: 1.2;
+  color: inherit;
+
+  filter: drop-shadow(16px 0 0 #ff0) drop-shadow(-16px 0 0 #ff0);
+}
+
+.slide h3 {
+  font-size: 42px;
+  line-height: 48px;
+}
+
+.slide h4 {
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.slide h5 {
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.slide ul {
+  font-size: 48px;
+  line-height: 1.4;
+  list-style: disc;
+  padding-left: 64px;
+}
+
+.slide ol {
+  font-size: 48px;
+  line-height: 1.4;
+  list-style: decimal;
+  padding-left: 64px;
+}
+
+.slide a {
+  color: #000;
+  line-height: 1.4;
+}

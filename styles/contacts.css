@@ -1,0 +1,43 @@
+.contacts h2 {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.contacts p {
+  font-size: 48px;
+}
+
+.contacts li {
+  font-size: 32px;
+}
+
+.contacts .company {
+  margin: 16px 0;
+  height: 32px;
+  display: block;
+}
+
+.contacts footer {
+  margin-top: 24px;
+}
+
+.contacts footer .link {
+  font-size: 24px;
+}
+
+.contacts ul{
+  padding: 0;
+  font-size: unset;
+  list-style: none;
+}
+
+.contacts .qrcode{
+  width: 80%;
+  margin: auto;
+  display: block;
+}

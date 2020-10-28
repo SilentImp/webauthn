@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP</title>
+</head>
+<body>
+  <form action="test.html" method="GET">
+    <fieldset>
+      <legend>
+        <h1>Password Recovery</h1>
+      </legend>
+      <label>
+        One time password from SMS:
+        <br>
+        <input 
+          type="text" 
+          inputmode="numeric" 
+          autocomplete="one-time-code" 
+          name="one-time-code"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="123456"
+          value=""
+          required
+          />
+      </label>
+    </fieldset>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    const form = document.querySelector('form');
+    console.log(form);
+
+    const listener = () => {
+      if ('OTPCredential' in window) {
+          console.log('OTPCredential in window');
+          const res = navigator.credentials.get({
+            otp: { transport:['sms'] }
+          }).then((otp) => {
+            console.log('otp: ');
+            console.log(otp);
+            const { code } = otp;
+            const input = form.querySelector('input[autocomplete="one-time-code"]');
+            input.value = code;
+            const button = form.querySelector('button[type="submit"]');
+            button.click();
+          }).catch(err => {
+            console.error(err);
+          });
+      }
+    };
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(form);
+      console.log(`Security code: ${data.get('one-time-code')}`);
+      alert(`Security code: ${data.get('one-time-code')}`);
+      listener();
+    });
+
+    (async () => {
+      listener();
+    })();
+  </script>
+</body>
+</html>

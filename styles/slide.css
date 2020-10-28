@@ -1,0 +1,128 @@
+.slides :not(.slide) {
+  pointer-events: none;
+  user-select: none;
+}
+
+.slides [data-click] {
+  pointer-events: all;
+  user-select: auto;
+}
+
+body {
+  background: 
+    linear-gradient(135deg, var(--add-bgc) 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, var(--add-bgc) 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, var(--add-bgc) 25%, transparent 25%),
+    linear-gradient(45deg, var(--add-bgc) 25%, transparent 25%);
+    background-size: 100px 100px;
+  background-color: var(--common-bgc);
+}
+
+main {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.slides {
+  position: relative;
+  display: grid;
+  gap: var(--slide-gap);
+  justify-content: left;
+  align-content: start;
+  grid-template-columns: repeat(auto-fill, var(--slide-width));
+  box-sizing: border-box;
+  padding: var(--slide-gap);
+  min-width: calc(var(--slide-width) + ( var(--slide-gap) * 2 ));
+}
+
+.slide {
+  display: block;
+  width: var(--slide-width);
+  height: var(--slide-height);
+  background-color: var(--slide-bgc);
+  position: relative;
+  overflow: hidden;
+  padding: var(--slide-gap);
+  box-sizing: border-box;
+  contain: strict;
+}
+
+html.fullscreen .slide {
+  transform: scale(var(--scale));
+}
+
+.slide:after {
+  content: attr(data-number);
+  position: absolute;
+  display: block;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  z-index: 1;
+  border-radius: 100%;
+  background-color: #fff;
+}
+
+.slide:first-of-type:after {
+  display: none;
+}
+
+.centred {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html:not(.fullscreen) .slide:hover,
+html:not(.fullscreen) .slide:focus {
+  outline: var(--slide-outline-width) solid var(--slide-outline-color-fucus);
+}
+
+html.fullscreen .slide:hover,
+html.fullscreen .slide:focus {
+  outline: none;
+}
+
+html:not(.fullscreen) .current:focus,
+html:not(.fullscreen) .current {
+  outline: var(--slide-outline-width) solid var(--slide-outline-color-current);
+}
+
+
+/* 
+  We need to have fullscreen mode as a ligical state, 
+  not tied to browser display mode
+*/
+html.fullscreen .slides {
+  display: block;
+}
+
+html.fullscreen .slide:not(.prev):not(.next):not(.current) {
+  display: none;
+}
+
+html.fullscreen .slide.prev,
+html.fullscreen .slide.next,
+html.fullscreen .slide.current {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+html.fullscreen .slide.prev,
+html.fullscreen .slide.next {
+  visibility: hidden;
+  z-index: 0;
+}
+
+html.fullscreen .slide.current {
+  z-index: 1;
+}

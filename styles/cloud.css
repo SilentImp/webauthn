@@ -1,0 +1,36 @@
+html .cloud {
+  text-transform: uppercase;
+  font-weight: 150;
+  position: absolute;
+  font-size: 88px;
+  line-height: 1.2;
+  color: #d7241e;
+}
+
+.cloud:after {
+  content: "";
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-color: #fff transparent transparent;
+  border-width: 80px 20px 0;
+  position: absolute;
+  top: 100%;
+  left: 120px;
+  margin-top: -2px;
+}
+
+.cloud b {
+  display: inline;
+  background-color: #fff;
+  color: currentColor;
+  font-size: inherit;
+  line-height: inherit;
+  filter: drop-shadow(8px 0 0 #fff) drop-shadow(-8px 0 0 #fff);
+}
+
+h2.cloud {
+  line-height: 1;
+  filter: none;
+  background-color: transparent;
+}
